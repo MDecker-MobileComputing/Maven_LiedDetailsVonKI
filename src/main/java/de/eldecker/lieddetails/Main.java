@@ -39,7 +39,7 @@ public class Main {
 			final String interpret = interpretOptional.get();
 			final String titel     = titelOptional.get();
 			
-			final String ergebnis = liedDetailsVonKI.holeLiedDetails( interpret, titel );
+			final String ergebnis = liedDetailsVonKI.holeLiedDetails( interpret, titel ); // Aufruf KI
 			
 			System.out.println( ergebnis + "\n" );		
 		}

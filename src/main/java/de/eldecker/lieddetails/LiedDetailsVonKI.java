@@ -32,7 +32,6 @@ public class LiedDetailsVonKI {
 			Beantworte diese Fragen, ohne Formatierungen wie Markdown zu verwenden.
 			""";
 
-
 	/**
 	 * KI-Modell, an das OpenRouter weiterleiten soll, in Form
 	 * <pre>{provider}/{model}</pre>, z.B. <pre>deepseek/deepseek-v4.1-flash-1017</pre>.
@@ -44,10 +43,8 @@ public class LiedDetailsVonKI {
 	 *
 	 * Achtung: Die Output-Token sind meistens deutlich teurer als die Input-Token.
 	 */
-	//private static final String MODEL_NAME = "meta-llama/llama-3.1-8b-instruct";
-
 	private static final String MODEL_NAME = "mistralai/mistral-small-24b-instruct-2501";
-
+	//private static final String MODEL_NAME = "meta-llama/llama-3.1-8b-instruct";
 	//private static final String MODEL_NAME = "openrouter/free"; // kostenloses Modell verwenden (OpenRouter.ai wählt aus)
 
 
@@ -85,8 +82,8 @@ public class LiedDetailsVonKI {
 		httpAdapter.setRequestInterceptor( request -> {
 
 		    final HashMap<String, String> headers = new HashMap<>( request.getHeaders() );		    
-		    headers.put( "X-OpenRouter-Title", "Lied-Details (Maven)"                                              );
-		    headers.put( "HTTP-Referer"      , "https://github.com/MDecker-MobileComputing/Maven_LiedDetailsVonKI" );
+		    headers.put( "X-OpenRouter-Title", "Lied-Details (Maven)"         );
+		    headers.put( "HTTP-Referer"      , "https://tinyurl.com/4vt85vn6" ); // Kurz-URL für GitHub-Repo der App
 		    request.setHeaders( headers );
 		    return request;
 		});
