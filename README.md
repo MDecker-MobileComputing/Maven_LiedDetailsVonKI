@@ -5,7 +5,11 @@
 Dieses Repository enthält ein Java-TextUI-Programm in der Form eines Maven-Projekts.
 Das Programm fragt einen Interpreten (Einzelkünstler oder Band) und den Titel eines
 Lieds ab, und ruft dann dazu Informationen von einer KI/LLM über
-[OpenRouter](https://openrouter.ai/) ab.
+[OpenRouter.ai](https://openrouter.ai/) ab.
+
+<br>
+
+The author of this repository is not affiliated with *OpenRouter.ai* in any way.
 
 <br>
 
