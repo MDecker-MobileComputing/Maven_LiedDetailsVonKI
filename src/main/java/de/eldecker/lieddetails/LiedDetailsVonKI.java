@@ -70,24 +70,25 @@ public class LiedDetailsVonKI {
 			throw new LiedDetailsException(
 					"Umgebungsvariable " + NAME_UMGEBUNGSVARIABLE + " nicht gesetzt." );
 		}
-		
+
 		final JavaHttpClientAdapter httpAdapter = new JavaHttpClientAdapter();
 
+		_simpleOpenAIClient = SimpleOpenAI.builder()
+				                          .apiKey( apiKey )
+				                          .baseUrl( "https://openrouter.ai/api" )
+				                          .clientAdapter( httpAdapter )
+				                          .build();
+
 		// HTTP-Header für Zuordnung der Requests in Auswertungen von OpenRouter setzen
+		// (Spalte "App" unter "Logs")
 		httpAdapter.setRequestInterceptor( request -> {
-			
-		    final HashMap<String, String> headers = new HashMap<>( request.getHeaders() );
-		    headers.put( "HTTP-Referer"      , "https://github.com/MDecker-MobileComputing/Maven_LiedDetailsVonKI" );
+
+		    final HashMap<String, String> headers = new HashMap<>( request.getHeaders() );		    
 		    headers.put( "X-OpenRouter-Title", "Lied-Details (Maven)"                                              );
+		    headers.put( "HTTP-Referer"      , "https://github.com/MDecker-MobileComputing/Maven_LiedDetailsVonKI" );
 		    request.setHeaders( headers );
 		    return request;
 		});
-
-		_simpleOpenAIClient = SimpleOpenAI.builder()
-				.apiKey( apiKey )
-				.baseUrl( "https://openrouter.ai/api" )
-				.clientAdapter( httpAdapter )
-				.build();
 	}
 
 
@@ -111,17 +112,25 @@ public class LiedDetailsVonKI {
 		final UserMessage userMessage = UserMessage.of( prompt );
 
         final ChatRequest chatRequest = ChatRequest.builder()
-                .model( MODEL_NAME )
-                .message( userMessage )
-                .build();
+        		                                   .model( MODEL_NAME )
+                                                   .message( userMessage )
+                                                   .build();
 
-        System.out.println( "Sende Anfrage an KI ...\n" );
+        System.out.println( "\nSende Anfrage an KI ...\n" );
+        
+        final long zeitStart = System.nanoTime();
 
-        String antwort = _simpleOpenAIClient.chatCompletions()
-                .create( chatRequest )
-                .join()
-                .firstContent();
-
+        final String antwort = _simpleOpenAIClient.chatCompletions()
+                                                  .create( chatRequest )
+                                                  .join()
+                                                  .firstContent();
+        
+        final long zeitStopp = System.nanoTime();
+        
+        final long laufzeit = ( zeitStopp - zeitStart ) / 1_000_000;
+        
+        System.out.println( "Dauer der Anfrage: " + laufzeit + " ms\n" );
+        
 		return antwort;
 	}
 }
