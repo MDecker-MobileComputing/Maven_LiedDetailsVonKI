@@ -38,8 +38,9 @@ public class LiedDetailsVonKI {
 	 * <pre>{provider}/{model}</pre>, z.B. <pre>deepseek/deepseek-v4.1-flash-1017</pre>.
 	 * <br>
 	 *
-	 * siehe Liste aller Modelle für Text-Input/Output:
-	 * https://openrouter.ai/models?output_modalities=text&order=pricing-low-to-high
+	 * Siehe die Liste aller verfügbaren Modelle für Text-Input/Output unter:
+	 * https://openrouter.ai/models?output_modalities=text&amp;order=pricing-low-to-high
+	 * <br>
 	 *
 	 * Achtung: Die Output-Token sind meistens deutlich teurer als die Input-Token.
 	 */

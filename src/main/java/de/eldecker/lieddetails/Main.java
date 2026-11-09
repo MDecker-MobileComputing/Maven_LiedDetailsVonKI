@@ -10,9 +10,10 @@ import java.util.Optional;
  * Klasse mit Einstiegsmethode des Programms.
  */
 public class Main {
+	
 
 	/**
-	 * Einstiegsmethode.
+	 * Einstiegsmethode für Programmausführung.
 	 * 
 	 * @param args Wird nicht ausgewertet
 	 * 
@@ -46,6 +47,5 @@ public class Main {
 		eingabeSchliessen();
 		
 		System.out.println( "\nProgramm beendet" );
-	}
-	
+	}	
 }

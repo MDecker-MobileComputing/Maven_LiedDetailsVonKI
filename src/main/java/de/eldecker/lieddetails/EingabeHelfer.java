@@ -15,15 +15,16 @@ public class EingabeHelfer {
 	
 	
 	/**
-	 * Methode, um Interpret oder Titel des Lieds einzulesen
+	 * Methode, um Interpret oder Titel des Lieds von Tastatur einzulesen.
 	 * 
-	 * @param feld "Interpret" oder "Titel"
+	 * @param nameAttribut "Interpret" oder "Titel"
 	 * 
-	 * @return Optional enthält eingegebenen String, wenn Nutzer etwas eingegeben hat.
+	 * @return Optional enthält eingegebenen String, wenn Nutzer etwas eingegeben hat;
+	 *         wenn das Optional leer ist, dann soll das Programm beendet werden.
 	 */
-	public static Optional<String> einlesen( String feld ) {
+	public static Optional<String> einlesen( String nameAttribut ) {
 
-		System.out.print( "\nBitte " + feld + " eingeben: " );
+		System.out.print( "\nBitte " + nameAttribut + " eingeben: " );
 		
         String eingabeZeile = sScanner.nextLine();
 
