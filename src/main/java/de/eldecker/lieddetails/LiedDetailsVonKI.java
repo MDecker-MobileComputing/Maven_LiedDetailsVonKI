@@ -1,25 +1,62 @@
 package de.eldecker.lieddetails;
 
+import java.util.HashMap;
+
+import io.github.sashirestela.cleverclient.client.JavaHttpClientAdapter;
 import io.github.sashirestela.openai.SimpleOpenAI;
 import io.github.sashirestela.openai.domain.chat.ChatMessage.UserMessage;
 import io.github.sashirestela.openai.domain.chat.ChatRequest;
 
+
+/**
+ * Klasse, die die Kommunikation mit der KI/LLM über OpenRouter kapselt.
+ */
 public class LiedDetailsVonKI {
 
+	/**
+	 * Name der Umgebungsvariable mit dem API-Key für OpenRouter.
+	 */
 	private static final String NAME_UMGEBUNGSVARIABLE = "OPENROUTER_API_KEY";
 
 	/**
-	 * KI-Modell, an das OpenRouter weiterleiten soll.
-	 * <br>
-	 * 
-	 * siehe Liste aller Modelle für Text-Input/Output:
-	 * https://openrouter.ai/models?output_modalities=text
+	 * Template mit Prompt, der Platzhalter für Titel und Interpret enthält.
 	 */
-	private static final String MODEL_NAME = "meta-llama/llama-3.1-8b-instruct";
+	private static final String PROMPT_TEMPLATE =
+			"""
+			In welchem Jahr und auf welchem Album wurde das Lied "{{LIED_TITEL}}" von "{{INTERPRET}}" veröffentlicht?
+			Aus welchem Land ist der Interpret?
+			Wer hat das Lied geschrieben?
+			Welcher Stilrichtung ist es zuzuordnen?
+			Was bedeutet der Text?
+			Gibt es Wissenswertes zu diesem Lied, z.B. bekannte Cover-Versionen oder ist das Lied selbst eine Cover-Version?
+			Beantworte diese Fragen, ohne Formatierungen wie Markdown zu verwenden.
+			""";
 
-	private final SimpleOpenAI simpleOpenAIClient;
 
-	
+	/**
+	 * KI-Modell, an das OpenRouter weiterleiten soll, in Form
+	 * <pre>{provider}/{model}</pre>, z.B. <pre>deepseek/deepseek-v4.1-flash-1017</pre>.
+	 * <br>
+	 *
+	 * siehe Liste aller Modelle für Text-Input/Output:
+	 * https://openrouter.ai/models?output_modalities=text&order=pricing-low-to-high
+	 *
+	 * Achtung: Die Output-Token sind meistens deutlich teurer als die Input-Token.
+	 */
+	//private static final String MODEL_NAME = "meta-llama/llama-3.1-8b-instruct";
+
+	private static final String MODEL_NAME = "mistralai/mistral-small-24b-instruct-2501";
+
+	//private static final String MODEL_NAME = "openrouter/free"; // kostenloses Modell verwenden (OpenRouter.ai wählt aus)
+
+
+	/**
+	 * Client-Objekt, das u.a. den API-Key kapselt und für das Absenden der
+	 * einzelnen Anfragen an die KI benötigt wird.
+	 */
+	private final SimpleOpenAI _simpleOpenAIClient;
+
+
 	/**
 	 * Erstellt einen Client, der für mehrere Anfragen verwendet werden kann.
 	 *
@@ -33,10 +70,23 @@ public class LiedDetailsVonKI {
 			throw new LiedDetailsException(
 					"Umgebungsvariable " + NAME_UMGEBUNGSVARIABLE + " nicht gesetzt." );
 		}
+		
+		final JavaHttpClientAdapter httpAdapter = new JavaHttpClientAdapter();
 
-		simpleOpenAIClient = SimpleOpenAI.builder()
+		// HTTP-Header für Zuordnung der Requests in Auswertungen von OpenRouter setzen
+		httpAdapter.setRequestInterceptor( request -> {
+			
+		    final HashMap<String, String> headers = new HashMap<>( request.getHeaders() );
+		    headers.put( "HTTP-Referer"      , "https://github.com/MDecker-MobileComputing/Maven_LiedDetailsVonKI" );
+		    headers.put( "X-OpenRouter-Title", "Lied-Details (Maven)"                                              );
+		    request.setHeaders( headers );
+		    return request;
+		});
+
+		_simpleOpenAIClient = SimpleOpenAI.builder()
 				.apiKey( apiKey )
 				.baseUrl( "https://openrouter.ai/api" )
+				.clientAdapter( httpAdapter )
 				.build();
 	}
 
@@ -46,26 +96,28 @@ public class LiedDetailsVonKI {
 	 *
 	 * @param interpret Band oder Einzelkünstler, z.B. "Michael Jackson" oder "The Beatles"
 	 *
-	 * @param liedTitel Titel des Liedes, z.B. "Yellow Submarine"
+	 * @param titelLied Titel des Liedes, z.B. "Yellow Submarine"
 	 *
 	 * @return String mit Antwort von KI
 	 *
 	 * @throws java.util.concurrent.CompletionException Fehler bei Kommunikation mit OpenRouter
 	 */
-	public String holeLiedDetails( String interpret, String liedTitel ) {
+	public String holeLiedDetails( String interpret, String titelLied ) {
 
-		final UserMessage userMessage =
-				UserMessage.of( "Welche Informationen gibt es zum Lied '" + liedTitel
-						+ "' von " + interpret + "?" );
+
+		final String prompt = PROMPT_TEMPLATE.replace( "{{INTERPRET}}" , interpret )
+		                                     .replace( "{{LIED_TITEL}}", titelLied );
+
+		final UserMessage userMessage = UserMessage.of( prompt );
 
         final ChatRequest chatRequest = ChatRequest.builder()
                 .model( MODEL_NAME )
                 .message( userMessage )
                 .build();
 
-        System.out.println( "Sende Anfrage an KI ..." );
-        
-        String antwort = simpleOpenAIClient.chatCompletions()
+        System.out.println( "Sende Anfrage an KI ...\n" );
+
+        String antwort = _simpleOpenAIClient.chatCompletions()
                 .create( chatRequest )
                 .join()
                 .firstContent();

@@ -7,7 +7,7 @@ public class Main {
 		System.out.println();
 		
 		final LiedDetailsVonKI liedDetailsVonKI = new LiedDetailsVonKI();
-		final String ergebnis = liedDetailsVonKI.holeLiedDetails( "Iron Maiden", "The Number of The Beast" );
+		final String ergebnis = liedDetailsVonKI.holeLiedDetails( "Jimi Hendrix", "All Along The Watchtower" );
 		
 		System.out.println( ergebnis + "\n" );
 	}

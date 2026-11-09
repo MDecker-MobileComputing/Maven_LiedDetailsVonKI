@@ -10,7 +10,15 @@
   <version>0.0.1-SNAPSHOT</version>
 
   <name>lied-details</name>
-  <description>Lied-Details von KI</description>
+  <description>Lied-Details von KI/LLM abfragen</description>
+  <url>https://github.com/MDecker-MobileComputing/Maven_LiedDetailsVonKI</url>
+  <inceptionYear>2026</inceptionYear>
+
+  <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <maven.compiler.source>21</maven.compiler.source>
+      <maven.compiler.target>21</maven.compiler.target>
+  </properties>
 
 
   <dependencies>
