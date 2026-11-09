@@ -1,0 +1,1 @@
+mvnw exec:java -Dexec.mainClass=de.eldecker.lieddetails.Main
