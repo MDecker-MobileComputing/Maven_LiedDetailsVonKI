@@ -1,0 +1,40 @@
+name: FatJar+JavaDoc bauen
+
+on:
+  push:
+    branches: [ "master" ]
+  workflow_dispatch:
+#  schedule:
+#    - cron: "55 10 * * 1-5"
+
+# Zeitangabe in Cron-String in UTC! (Deutsche Zeitzone: UTC+1 oder während Sommerzeit UTC+2 )
+# 1-5: von Montag bis Freitag
+# Komponenten im Cron-String: minute hour day-of-month month day-of-week
+#
+# https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule
+# "In a public repository, scheduled workflows are automatically disabled when no repository activity has occurred in 60 days."
+
+
+jobs:
+  job-fatjar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10 # Job ggf. nach 10 Minuten abbrechen
+    steps:
+    - name: Git-Repo auschecken
+      uses: actions/checkout@v7
+    - name: JDK einrichten
+      uses: actions/setup-java@v6.2.0
+      with:
+        java-version: '25'
+        distribution: 'temurin'
+        cache: maven
+    - name: Maven-Installation checken
+      run: mvn --version
+    - name: FatJar-Datei mit Maven bauen
+      run: mvn --batch-mode clean package
+    - name: FatJar-Datei veröffentlichen
+      uses: actions/upload-artifact@v7
+      with:
+        name: Lottozahlen_FatJar
+        path: target/*jar-with-dependencies*.jar
+

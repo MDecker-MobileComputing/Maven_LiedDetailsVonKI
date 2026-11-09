@@ -6,7 +6,7 @@ import io.github.sashirestela.openai.domain.chat.ChatRequest;
 
 public class LiedDetailsVonKI {
 
-	private static String NAME_UMGEBUNGSVARIABLE = "OPENROUTER_API_KEY";
+	private static final String NAME_UMGEBUNGSVARIABLE = "OPENROUTER_API_KEY";
 
 	/**
 	 * KI-Modell, an das OpenRouter weiterleiten soll.
@@ -15,12 +15,30 @@ public class LiedDetailsVonKI {
 	 * siehe Liste aller Modelle für Text-Input/Output:
 	 * https://openrouter.ai/models?output_modalities=text
 	 */
-	private static String MODEL_NAME = "meta-llama/llama-3.1-8b-instruct"; 
+	private static final String MODEL_NAME = "meta-llama/llama-3.1-8b-instruct";
 
-	/** API-Key für Zugriff auf openrouter.ai */
-	private static String API_KEY = System.getenv( NAME_UMGEBUNGSVARIABLE );
+	private final SimpleOpenAI simpleOpenAIClient;
 
-	private static SimpleOpenAI sSIMPLE_OPENAI_CLIENT = null;
+	
+	/**
+	 * Erstellt einen Client, der für mehrere Anfragen verwendet werden kann.
+	 *
+	 * @throws LiedDetailsException API-Key nicht gefunden
+	 */
+	public LiedDetailsVonKI() throws LiedDetailsException {
+
+		final String apiKey = System.getenv( NAME_UMGEBUNGSVARIABLE );
+		if ( apiKey == null || apiKey.isBlank() ) {
+
+			throw new LiedDetailsException(
+					"Umgebungsvariable " + NAME_UMGEBUNGSVARIABLE + " nicht gesetzt." );
+		}
+
+		simpleOpenAIClient = SimpleOpenAI.builder()
+				.apiKey( apiKey )
+				.baseUrl( "https://openrouter.ai/api" )
+				.build();
+	}
 
 
 	/**
@@ -32,27 +50,13 @@ public class LiedDetailsVonKI {
 	 *
 	 * @return String mit Antwort von KI
 	 *
-	 * @throws LiedDetailsException API-Key nicht gefunden oder Fehler bei Kommunikation mit OpenRouter
+	 * @throws java.util.concurrent.CompletionException Fehler bei Kommunikation mit OpenRouter
 	 */
-	public static String holeLiedDetails( String interpret, String liedTitel ) throws LiedDetailsException {
-
-		if ( API_KEY == null  || API_KEY.isBlank() ) {
-
-			throw new LiedDetailsException(
-					"Umgebungsvariable " + NAME_UMGEBUNGSVARIABLE + " nicht gesetzt." );
-		}
-
-		if ( sSIMPLE_OPENAI_CLIENT == null ) {
-
-			sSIMPLE_OPENAI_CLIENT =
-				SimpleOpenAI.builder()
-					.apiKey( API_KEY )
-					.baseUrl( "https://openrouter.ai/api" )
-					.build();
-		}
+	public String holeLiedDetails( String interpret, String liedTitel ) {
 
 		final UserMessage userMessage =
-				UserMessage.of( "Welche Informationen gibt es zum Lied 'Africa' von Toto?" );
+				UserMessage.of( "Welche Informationen gibt es zum Lied '" + liedTitel
+						+ "' von " + interpret + "?" );
 
         final ChatRequest chatRequest = ChatRequest.builder()
                 .model( MODEL_NAME )
@@ -61,7 +65,7 @@ public class LiedDetailsVonKI {
 
         System.out.println( "Sende Anfrage an KI ..." );
         
-        String antwort = sSIMPLE_OPENAI_CLIENT.chatCompletions()
+        String antwort = simpleOpenAIClient.chatCompletions()
                 .create( chatRequest )
                 .join()
                 .firstContent();
