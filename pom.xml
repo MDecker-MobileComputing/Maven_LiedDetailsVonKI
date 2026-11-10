@@ -13,7 +13,13 @@
   <description>Lied-Details von KI/LLM abfragen</description>
   <url>https://github.com/MDecker-MobileComputing/Maven_LiedDetailsVonKI</url>
   <inceptionYear>2026</inceptionYear>
-
+  <licenses>
+    <license>
+      <name>BSD 3-Clause License</name>
+      <url>https://opensource.org/license/BSD-3-clause/</url>
+    </license>
+  </licenses>
+      
   <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <maven.compiler.source>21</maven.compiler.source>
@@ -31,5 +37,38 @@
     </dependency>
 
   </dependencies>
+  
+  <build>
+    <plugins>
+        <plugin>
+            <!-- "Fat Jar" bauen, wenn Befehl "mvnw package" ausgeführt wird
+                 Das "Fat Jar" sollte sich danach im Ordner "target" befinden und wird wie folgt ausgeführt:
+                 java -jar lied-details-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+              -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>3.8.0</version><!-- Für neueste Version siehe https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-assembly-plugin -->
+            <configuration>
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+                <archive>
+                  <manifest>
+                    <mainClass>de.eldecker.lieddetails.Main</mainClass>
+                  </manifest>
+                </archive>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>assemble-all</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>single</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+  </build>  
 
 </project>

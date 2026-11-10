@@ -103,7 +103,6 @@ public class LiedDetailsVonKI {
 	 */
 	public String holeLiedDetails( String interpret, String titelLied ) {
 
-
 		final String prompt = PROMPT_TEMPLATE.replace( "{{INTERPRET}}" , interpret )
 		                                     .replace( "{{LIED_TITEL}}", titelLied );
 
