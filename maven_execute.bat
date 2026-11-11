@@ -1,1 +1,2 @@
-mvnw exec:java -Dexec.mainClass=de.eldecker.lieddetails.Main
+
+mvnw compile exec:java -Dexec.mainClass=de.eldecker.lieddetails.Main
