@@ -28,6 +28,8 @@ public class LiedDetailsVonKI {
 			Wer hat das Lied geschrieben?
 			Welcher Stilrichtung ist es zuzuordnen?
 			Was bedeutet der Text?
+			Wurde das Lied als Single ausgekoppelt?
+			War das Lied kommerziell erfolgreich?
 			Gibt es Wissenswertes zu diesem Lied, z.B. bekannte Cover-Versionen oder ist das Lied selbst eine Cover-Version?
 			Beantworte diese Fragen, ohne Formatierungen wie Markdown zu verwenden.
 			""";
