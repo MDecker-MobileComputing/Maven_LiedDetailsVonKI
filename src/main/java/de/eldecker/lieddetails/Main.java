@@ -1,9 +1,12 @@
 package de.eldecker.lieddetails;
 
-import static de.eldecker.lieddetails.EingabeHelfer.eingabeSchliessen;
-import static de.eldecker.lieddetails.EingabeHelfer.einlesen;
+import static de.eldecker.lieddetails.konsole.EingabeHelfer.eingabeSchliessen;
+import static de.eldecker.lieddetails.konsole.EingabeHelfer.einlesen;
 
 import java.util.Optional;
+
+import de.eldecker.lieddetails.ki.LiedDetailsException;
+import de.eldecker.lieddetails.ki.LiedDetailsVonKI;
 
 
 /**

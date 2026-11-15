@@ -1,4 +1,4 @@
-package de.eldecker.lieddetails;
+package de.eldecker.lieddetails.konsole;
 
 import java.util.Optional;
 import java.util.Scanner;
