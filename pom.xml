@@ -19,7 +19,7 @@
       <url>https://opensource.org/license/BSD-3-clause/</url>
     </license>
   </licenses>
-      
+
   <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <maven.compiler.source>21</maven.compiler.source>
@@ -29,7 +29,7 @@
 
   <dependencies>
 
-    <!-- neueste Version siehe https://mvnrepository.com/artifact/io.github.sashirestela/simple-openai/versions-->
+    <!-- neueste Version siehe https://mvnrepository.com/artifact/io.github.sashirestela/simple-openai/versions -->
     <dependency>
       <groupId>io.github.sashirestela</groupId>
       <artifactId>simple-openai</artifactId>
@@ -37,11 +37,12 @@
     </dependency>
 
   </dependencies>
-  
+
   <build>
     <plugins>
         <plugin>
-            <!-- "Fat Jar" bauen, wenn Befehl "mvnw package" ausgeführt wird
+            <!--
+                 "Fat Jar" bauen, wenn Befehl "mvnw package" ausgeführt wird
                  Das "Fat Jar" sollte sich danach im Ordner "target" befinden und wird wie folgt ausgeführt:
                  java -jar lied-details-0.0.1-SNAPSHOT-jar-with-dependencies.jar
               -->
@@ -69,6 +70,6 @@
             </executions>
         </plugin>
     </plugins>
-  </build>  
+  </build>
 
 </project>
