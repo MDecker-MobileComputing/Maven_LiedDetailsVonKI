@@ -33,7 +33,7 @@ public class EingabeHelfer {
 
         String eingabeZeile = sScanner.nextLine();
 
-        if (eingabeZeile == null) {
+        if ( eingabeZeile == null ) {
 
         	return Optional.empty();
         }
