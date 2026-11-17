@@ -12,6 +12,12 @@ verwendet.
 
 <br>
 
+JavaDoc-Dokumentation wird mit *GitHub Pages* unter der folgenden URL bereitgestellt:
+
+https://mdecker-mobilecomputing.github.io/Maven_LiedDetailsVonKI/
+
+<br>
+
 The author of this repository is not affiliated with *OpenRouter.ai* in any way.
 
 <br>
