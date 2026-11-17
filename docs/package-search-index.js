@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"Alle Packages","u":"allpackages-index.html","k":"18"},{"l":"de.eldecker.lieddetails"},{"l":"de.eldecker.lieddetails.ki"},{"l":"de.eldecker.lieddetails.konsole"}];updateSearchResults();
