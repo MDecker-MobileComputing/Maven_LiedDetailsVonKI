@@ -69,6 +69,18 @@
                 </execution>
             </executions>
         </plugin>
+
+        <!-- Jahreszahl im Copyright-Text richtig setzen -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.6.3</version>
+            <configuration>
+                <outputDirectory>${project.basedir}/target/site/apidocs</outputDirectory>
+                <bottom>&lt;small&gt;Copyright &#169; 2026. All rights reserved.&lt;/small&gt;</bottom>
+            </configuration>
+        </plugin>
+
     </plugins>
   </build>
 
