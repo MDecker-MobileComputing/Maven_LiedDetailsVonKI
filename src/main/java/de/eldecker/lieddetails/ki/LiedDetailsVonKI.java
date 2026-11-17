@@ -35,9 +35,15 @@ public class LiedDetailsVonKI {
 			""";
 
 	/**
-	 * KI-Modell, an das OpenRouter weiterleiten soll, in Form
-	 * <pre>{provider}/{model}</pre>, z.B. <pre>deepseek/deepseek-v4.1-flash-1017</pre>.
+	 * KI-Modell, an das OpenRouter weiterleiten soll, in folgender Form:
+	 * <pre>{provider}/{model}</pre>
+	 * Beispiel: <pre>deepseek/deepseek-v4.1-flash-1017</pre>.
 	 * <br>
+	 * 
+	 * Es gibt auch einige kostenlose Modelle, aber diese liefern in der Regel schlechte
+	 * Ergebnisse und sind häufig überlastet. Mit dem folgenden Modell-Name wird
+	 * OpenRouter angewiesen, selbst eines der kostenlosen Modelle auszuwählen:
+	 * <pre>openrouter/free</pre>
 	 *
 	 * Siehe die Liste aller verfügbaren Modelle für Text-Input/Output unter:
 	 * https://openrouter.ai/models?output_modalities=text&amp;order=pricing-low-to-high
@@ -45,7 +51,8 @@ public class LiedDetailsVonKI {
 	 *
 	 * Achtung: Die Output-Token sind meistens deutlich teurer als die Input-Token.
 	 */
-	private static final String MODEL_NAME = "mistralai/mistral-small-24b-instruct-2501";
+	private static final String MODEL_NAME = "anthropic/claude-haiku-5.5";
+	//private static final String MODEL_NAME = "mistralai/mistral-small-24b-instruct-2501";
 	//private static final String MODEL_NAME = "meta-llama/llama-3.1-8b-instruct";
 	//private static final String MODEL_NAME = "openrouter/free"; // kostenloses Modell verwenden (OpenRouter.ai wählt aus)
 

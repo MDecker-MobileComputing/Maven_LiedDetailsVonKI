@@ -128,7 +128,7 @@ einzelnen Anfragen an die KI benötigt wird.</div>
 <div class="col-first odd-row-color"><code>private static final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="Klasse in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#MODEL_NAME" class="member-name-link">MODEL_NAME</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">KI-Modell, an das OpenRouter weiterleiten soll, in Form</div>
+<div class="block">KI-Modell, an das OpenRouter weiterleiten soll, in folgender Form:</div>
 </div>
 <div class="col-first even-row-color"><code>private static final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="Klasse in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#NAME_UMGEBUNGSVARIABLE" class="member-name-link">NAME_UMGEBUNGSVARIABLE</a></code></div>
@@ -231,9 +231,15 @@ einzelnen Anfragen an die KI benötigt wird.</div>
 <h3>MODEL_NAME</h3>
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">private static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="Klasse in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">MODEL_NAME</span></div>
-<div class="block">KI-Modell, an das OpenRouter weiterleiten soll, in Form
-<pre>{provider}/{model}</pre>, z.B. <pre>deepseek/deepseek-v4.1-flash-1017</pre>.
+<div class="block">KI-Modell, an das OpenRouter weiterleiten soll, in folgender Form:
+<pre>{provider}/{model}</pre>
+Beispiel: <pre>deepseek/deepseek-v4.1-flash-1017</pre>.
 <br>
+
+Es gibt auch einige kostenlose Modelle, aber diese liefern in der Regel schlechte
+Ergebnisse und sind häufig überlastet. Mit dem folgenden Modell-Name wird
+OpenRouter angewiesen, selbst eines der kostenlosen Modelle auszuwählen:
+<pre>openrouter/free</pre>
 
 Siehe die Liste aller verfügbaren Modelle für Text-Input/Output unter:
 https://openrouter.ai/models?output_modalities=text&amp;order=pricing-low-to-high
@@ -278,7 +284,7 @@ einzelnen Anfragen an die KI benötigt wird.</div>
 <div class="block">Erstellt einen Client, der für mehrere Anfragen verwendet werden kann.</div>
 <dl class="notes">
 <dt>Löst aus:</dt>
-<dd><code><a href="LiedDetailsException.html" title="Klasse in de.eldecker.lieddetails.ki">LiedDetailsException</a></code> - API-Key nicht gefunden</dd>
+<dd><code><a href="LiedDetailsException.html" title="Klasse in de.eldecker.lieddetails.ki">LiedDetailsException</a></code> - API-Key nicht in Umgebungsvariable gefunden</dd>
 </dl>
 </div>
 </section>
