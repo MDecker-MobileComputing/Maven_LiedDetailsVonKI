@@ -60,7 +60,7 @@ public class LiedDetailsVonKI {
 	/**
 	 * Erstellt einen Client, der für mehrere Anfragen verwendet werden kann.
 	 *
-	 * @throws LiedDetailsException API-Key nicht gefunden
+	 * @throws LiedDetailsException API-Key nicht in Umgebungsvariable gefunden
 	 */
 	public LiedDetailsVonKI() throws LiedDetailsException {
 
