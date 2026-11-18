@@ -70,6 +70,22 @@
             </executions>
         </plugin>
 
+        <!-- Quellcode-JAR bauen (sources.jar) -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>3.3.0</version>
+            <executions>
+                <execution>
+                    <id>attach-sources</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>jar</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+
         <!-- Jahreszahl im Copyright-Text richtig setzen -->
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>

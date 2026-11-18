@@ -30,6 +30,7 @@ public class LiedDetailsVonKI {
 			Was bedeutet der Text?
 			Wurde das Lied als Single ausgekoppelt?
 			War das Lied kommerziell erfolgreich?
+			Hat die Band ein offizielles Musikvideo zu diesem Lied veröffentlicht?
 			Gibt es Wissenswertes zu diesem Lied, z.B. bekannte Cover-Versionen oder ist das Lied selbst eine Cover-Version?
 			Beantworte diese Fragen, ohne Formatierungen wie Markdown zu verwenden.
 			""";
@@ -39,7 +40,7 @@ public class LiedDetailsVonKI {
 	 * <pre>{provider}/{model}</pre>
 	 * Beispiel: <pre>deepseek/deepseek-v4.1-flash-1017</pre>.
 	 * <br>
-	 * 
+	 *
 	 * Es gibt auch einige kostenlose Modelle, aber diese liefern in der Regel schlechte
 	 * Ergebnisse und sind häufig überlastet. Mit dem folgenden Modell-Name wird
 	 * OpenRouter angewiesen, selbst eines der kostenlosen Modelle auszuwählen:
@@ -90,7 +91,7 @@ public class LiedDetailsVonKI {
 		// (Spalte "App" unter "Logs")
 		httpAdapter.setRequestInterceptor( request -> {
 
-		    final HashMap<String, String> headers = new HashMap<>( request.getHeaders() );		    
+		    final HashMap<String, String> headers = new HashMap<>( request.getHeaders() );
 		    headers.put( "X-OpenRouter-Title", "Lied-Details (Maven)"         );
 		    headers.put( "HTTP-Referer"      , "https://tinyurl.com/4vt85vn6" ); // Kurz-URL für GitHub-Repo der App
 		    request.setHeaders( headers );
@@ -123,20 +124,20 @@ public class LiedDetailsVonKI {
                                                    .build();
 
         System.out.println( "\nSende Anfrage an KI ...\n" );
-        
+
         final long zeitStart = System.nanoTime();
 
         final String antwort = _simpleOpenAIClient.chatCompletions()
                                                   .create( chatRequest )
                                                   .join()
                                                   .firstContent();
-        
+
         final long zeitStopp = System.nanoTime();
-        
+
         final long laufzeit = ( zeitStopp - zeitStart ) / 1_000_000;
-        
+
         System.out.println( "Dauer der Anfrage: " + laufzeit + " ms\n" );
-        
+
 		return antwort;
 	}
 }
