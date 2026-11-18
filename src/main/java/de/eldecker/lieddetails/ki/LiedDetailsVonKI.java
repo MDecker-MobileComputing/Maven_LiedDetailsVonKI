@@ -50,7 +50,9 @@ public class LiedDetailsVonKI {
 	 * Es ist auch möglich, OpenRouter selbst ein evtl. nicht kostenloses Modell auswählen zu lassen,
 	 * das für die Anfrage geeignet ist:
 	 * <pre>openrouter/auto</pre>
-	 * <b>Achtung:</b> Es wird evtl. ein teures Modell ausgewählt.
+	 * <b>Achtung:</b> Es wird evtl. ein teures Modell ausgewählt; es sollte deshalb unter  
+	 * <a href="https://openrouter.ai/workspaces/default/routing">Dashboard / Routing</a>
+	 * eine Preis-Stufe (Cost Tier) gesetzt werden: Low, Medium (Default), Hight, Extra High, Max.
 	 * <br><br>
 	 *
 	 * Siehe die Liste aller verfügbaren Modelle für Text-Input/Output unter:
