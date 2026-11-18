@@ -46,6 +46,11 @@ public class LiedDetailsVonKI {
 	 * OpenRouter angewiesen, selbst eines der kostenlosen Modelle auszuwählen:
 	 * <pre>openrouter/free</pre>
 	 *
+	 * Es ist auch möglich, OpenRouter selbst ein evtl. nicht kostenloses Modell auswählen zu lassen,
+	 * das für die Anfrage geeignet ist:
+	 * <pre>openrouter/auto</pre>
+	 * Achtung: es wird evtl. ein teures Modell ausgewählt.
+	 *
 	 * Siehe die Liste aller verfügbaren Modelle für Text-Input/Output unter:
 	 * https://openrouter.ai/models?output_modalities=text&amp;order=pricing-low-to-high
 	 * <br>
@@ -53,6 +58,7 @@ public class LiedDetailsVonKI {
 	 * Achtung: Die Output-Token sind meistens deutlich teurer als die Input-Token.
 	 */
 	private static final String MODEL_NAME = "anthropic/claude-haiku-5.5";
+	//private static final String MODEL_NAME = "openrouter/auto";
 	//private static final String MODEL_NAME = "mistralai/mistral-small-24b-instruct-2501";
 	//private static final String MODEL_NAME = "meta-llama/llama-3.1-8b-instruct";
 	//private static final String MODEL_NAME = "openrouter/free"; // kostenloses Modell verwenden (OpenRouter.ai wählt aus)
