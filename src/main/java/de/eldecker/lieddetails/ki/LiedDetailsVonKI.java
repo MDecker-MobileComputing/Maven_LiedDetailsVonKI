@@ -61,11 +61,12 @@ public class LiedDetailsVonKI {
 	 *
 	 * <b>Achtung:</b> Die Output-Token sind meistens deutlich teurer als die Input-Token.
 	 */
-	private static final String MODEL_NAME = "openrouter/auto";
+	private static final String MODEL_NAME = "openrouter/free"; // kostenloses Modell verwenden (OpenRouter.ai wählt aus)
+	//private static final String MODEL_NAME = "openrouter/auto";
 	//private static final String MODEL_NAME = "anthropic/claude-haiku-5.5";	
 	//private static final String MODEL_NAME = "mistralai/mistral-small-24b-instruct-2501";
 	//private static final String MODEL_NAME = "meta-llama/llama-3.1-8b-instruct";
-	//private static final String MODEL_NAME = "openrouter/free"; // kostenloses Modell verwenden (OpenRouter.ai wählt aus)
+
 
 
 	/**
