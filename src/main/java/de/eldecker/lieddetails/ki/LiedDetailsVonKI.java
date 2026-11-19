@@ -61,8 +61,8 @@ public class LiedDetailsVonKI {
 	 *
 	 * <b>Achtung:</b> Die Output-Token sind meistens deutlich teurer als die Input-Token.
 	 */
-	private static final String MODEL_NAME = "anthropic/claude-haiku-5.5";
-	//private static final String MODEL_NAME = "openrouter/auto";
+	private static final String MODEL_NAME = "openrouter/auto";
+	//private static final String MODEL_NAME = "anthropic/claude-haiku-5.5";	
 	//private static final String MODEL_NAME = "mistralai/mistral-small-24b-instruct-2501";
 	//private static final String MODEL_NAME = "meta-llama/llama-3.1-8b-instruct";
 	//private static final String MODEL_NAME = "openrouter/free"; // kostenloses Modell verwenden (OpenRouter.ai wählt aus)
@@ -133,7 +133,7 @@ public class LiedDetailsVonKI {
                                                    .message( userMessage )
                                                    .build();
 
-        System.out.println( "\nSende Anfrage an KI ...\n" );
+        System.out.println( "\nSende Anfrage an " + MODEL_NAME + " ...\n" );
 
         final long zeitStart = System.nanoTime();
 
