@@ -1,5 +1,7 @@
 package de.eldecker.lieddetails.ki;
 
+import static java.util.Locale.GERMAN;
+
 import java.util.HashMap;
 
 import io.github.sashirestela.cleverclient.client.JavaHttpClientAdapter;
@@ -45,6 +47,8 @@ public class LiedDetailsVonKI {
 	 * Ergebnisse und sind häufig überlastet. Mit dem folgenden Modell-Name wird
 	 * OpenRouter angewiesen, selbst eines der kostenlosen Modelle auszuwählen:
 	 * <pre>openrouter/free</pre>
+	 * <br>
+	 * OpenRouter wählt hierbei ein geeignetes Modell zufällig aus.
 	 * <br>
 	 *
 	 * Es ist auch möglich, OpenRouter selbst ein evtl. nicht kostenloses Modell auswählen zu lassen,
@@ -147,7 +151,8 @@ public class LiedDetailsVonKI {
 
         final long laufzeit = ( zeitStopp - zeitStart ) / 1_000_000;
 
-        System.out.println( "Dauer der Anfrage: " + laufzeit + " ms\n" );
+		final String laufzeitFormatiert = String.format( GERMAN, "%,d", laufzeit );
+        System.out.println( "Dauer der Anfrage: " + laufzeitFormatiert + " ms\n" );
 
 		return antwort;
 	}
