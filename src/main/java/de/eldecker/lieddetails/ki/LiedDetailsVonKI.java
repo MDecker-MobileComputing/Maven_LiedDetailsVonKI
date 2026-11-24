@@ -103,7 +103,7 @@ public class LiedDetailsVonKI {
 				                          .build();
 
 		// HTTP-Header für Zuordnung der Requests in Auswertungen von OpenRouter setzen
-		// (Spalte "App" unter "Logs")
+		// (z.B. für Werte in Spalte "App" unter "Logs")
 		httpAdapter.setRequestInterceptor( request -> {
 
 		    final HashMap<String, String> headers = new HashMap<>( request.getHeaders() );
