@@ -70,7 +70,7 @@ public class LiedDetailsVonKI {
 	//private static final String MODEL_NAME = "anthropic/claude-haiku-5.5";	
 	//private static final String MODEL_NAME = "mistralai/mistral-small-24b-instruct-2501";
 	//private static final String MODEL_NAME = "meta-llama/llama-3.1-8b-instruct";
-
+    //private static final String MODEL_NAME = "deepseek/deepseek-v4.1-flash-1017";
 
 
 	/**
