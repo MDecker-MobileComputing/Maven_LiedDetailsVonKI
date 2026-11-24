@@ -12,6 +12,11 @@ verwendet.
 
 <br>
 
+Für die Ausführung des Programm muss in der Umgebungsvariable `OPENROUTER_API_KEY`
+ein API-Key von openrouter.ai enthalten sein.
+
+<br>
+
 JavaDoc-Dokumentation wird mit *GitHub Pages* unter der folgenden URL bereitgestellt:
 
 https://mdecker-mobilecomputing.github.io/Maven_LiedDetailsVonKI/
